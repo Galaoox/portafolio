@@ -1,90 +1,544 @@
 ---
-// Laptop wireframe component with animated code
+// Terminal component with CV JSON and subtle shadow
 ---
 
-<div class="laptop-wireframe hidden lg:block absolute right-8 top-1/2 transform -translate-y-1/2 opacity-20 hover:opacity-30 transition-opacity duration-300">
-    <!-- Laptop base -->
-    <div class="relative">
-        <!-- Screen -->
-        <div class="w-80 h-48 bg-gray-800 border-2 border-gray-600 rounded-lg relative overflow-hidden">
-            <!-- Screen content -->
-            <div class="p-4 h-full">
-                <!-- Code lines -->
-                <div class="space-y-1 text-xs">
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">1</span>
-                        <span class="text-purple-400">const</span>
-                        <span class="text-gray-300 ml-1">developer</span>
-                        <span class="text-gray-300">=</span>
-                        <span class="text-yellow-400 ml-1">'Erick'</span>
-                        <span class="text-gray-300">;</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">2</span>
-                        <span class="text-purple-400">const</span>
-                        <span class="text-gray-300 ml-1">skills</span>
-                        <span class="text-gray-300">=</span>
-                        <span class="text-yellow-400 ml-1">[</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">3</span>
-                        <span class="text-gray-300 ml-4">'JavaScript'</span>
-                        <span class="text-gray-300">,</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">4</span>
-                        <span class="text-gray-300 ml-4">'React'</span>
-                        <span class="text-gray-300">,</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">5</span>
-                        <span class="text-gray-300 ml-4">'Node.js'</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">6</span>
-                        <span class="text-yellow-400 ml-4">]</span>
-                        <span class="text-gray-300">;</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">7</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="text-blue-400 mr-2">8</span>
-                        <span class="text-purple-400">console</span>
-                        <span class="text-gray-300">.</span>
-                        <span class="text-blue-400">log</span>
-                        <span class="text-gray-300">(</span>
-                        <span class="text-yellow-400">'Hello World!'</span>
-                        <span class="text-gray-300">);</span>
-                    </div>
-                </div>
-                
-                <!-- Cursor blink animation -->
-                <div class="absolute bottom-4 right-4 w-2 h-4 bg-green-400 animate-pulse"></div>
-            </div>
+<!-- Contenedor del laptop -->
+<div
+  class="relative lg:absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block
+         [transform-style:preserve-3d] perspective-500 transition
+         hover:scale-[1.02] hover:saturate-150 ease-out duration-300
+         shadow-lg shadow-accent/10 hover:shadow-xl hover:shadow-accent/15">
+
+  <!-- Carcasa + pantalla -->
+  <div
+    class="w-[520px] h-[347px] bg-surface border border-accent/20 rounded-xl
+           rotateX-6 rotateY-8 shadow-[0_25px_60px_-10px_rgba(127,90,240,0.3)]
+           overflow-hidden relative">
+
+    <!-- Brillo/reflejo -->
+    <span
+      class="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent
+             pointer-events-none"></span>
+
+    <!-- Terminal -->
+    <div class="p-4 h-full font-mono text-sm leading-relaxed text-primary-text overflow-hidden bg-background">
+      <!-- Header de la terminal -->
+      <div class="flex items-center justify-between mb-3 pb-2 border-b border-accent/20">
+        <div class="flex items-center space-x-2">
+          <div class="w-3 h-3 bg-error rounded-full"></div>
+          <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div class="w-3 h-3 bg-success rounded-full"></div>
         </div>
-        
-        <!-- Laptop base -->
-        <div class="w-96 h-2 bg-gray-700 rounded-b-lg mx-auto"></div>
-        
-        <!-- Keyboard area -->
-        <div class="w-80 h-1 bg-gray-600 mx-auto mt-1"></div>
+        <span class="text-secondary-text text-xs font-medium">terminal</span>
+      </div>
+      
+      <!-- Contenido de la terminal -->
+      <div id="terminal-content" class="space-y-2 text-xs">
+        <!-- El contenido se agregará dinámicamente -->
+      </div>
+      
+      <!-- Prompt actual -->
+      <div class="flex items-center mt-3">
+        <span class="text-success mr-2 font-bold">$</span>
+        <span id="current-command" class="text-primary-text"></span>
+        <span id="typing-cursor" class="inline-block w-2 h-4 bg-success ml-1"></span>
+      </div>
     </div>
+  </div>
+
 </div>
 
-<style>
-    .laptop-wireframe {
-        z-index: 10;
+<script>
+  // Cargar anime.js dinámicamente
+  let anime: any = null;
+  
+  // Función para cargar anime.js
+  async function loadAnimeJS() {
+    try {
+      const animeModule = await import('animejs');
+      anime = animeModule;
+    } catch (error) {
+      console.warn('Could not load anime.js:', error);
+      anime = null;
+    }
+  }
+  
+  interface TerminalCommand {
+    command: string;
+    output?: string;
+    delay: number;
+  }
+
+  // Comandos de la terminal que muestran información de las secciones
+  const terminalCommands: TerminalCommand[] = [
+    // Navegación inicial
+    { 
+      command: "cd ~/portfolio", 
+      output: "", 
+      delay: 1000 
+    },
+    
+    // Comando About
+    { 
+      command: "cat about.md", 
+      output: `# Sobre mí
+
+Desarrollador Full Stack con más de 5 años de experiencia en React, Angular, .NET Core, Node.js y Python.
+
+Especialidades:
+• Soluciones escalables
+• Optimización de rendimiento
+• Arquitecturas eficientes
+• Integración con APIs
+• Automatización de procesos
+
+Enfoque en transformar ideas en software robusto y de alto impacto.`, 
+      delay: 4000 
+    },
+    
+    // Clear después de About
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // Navegación a experiencia
+    { 
+      command: "cd experience", 
+      output: "", 
+      delay: 1000 
+    },
+    
+    // Listar experiencia
+    { 
+      command: "ls -la", 
+      output: `total 16
+drwxr-xr-x  4 user user 4096 Jan 27 23:00 .
+drwxr-xr-x  6 user user 4096 Jan 27 23:00 ..
+-rw-r--r--  1 user user  156 Jan 27 23:00 periferia-it.md
+-rw-r--r--  1 user user  234 Jan 27 23:00 grupo-r5.md
+-rw-r--r--  1 user user  189 Jan 27 23:00 mvm-ingenieria.md
+-rw-r--r--  1 user user  145 Jan 27 23:00 logical-software.md`, 
+      delay: 3000 
+    },
+    
+    // Detalles de experiencia
+    { 
+      command: "cat periferia-it.md", 
+      output: `# Periferia IT
+**Cargo:** Desarrollador Full Stack
+**Período:** Mar 2025 - Actual
+**Tecnologías:** React, Node.js, Python, FastAPI
+**Logros:** Optimización de rendimiento web en 42%`, 
+      delay: 3000 
+    },
+    
+    { 
+      command: "cat grupo-r5.md", 
+      output: `# Grupo R5
+**Cargo:** Desarrollador Full Stack
+**Período:** Ene 2023 - Mar 2025
+**Tecnologías:** Python, FastAPI, Metabase
+**Logros:** Desarrollo de microservicios, reportes en Metabase`, 
+      delay: 3000 
+    },
+    
+    // Clear después de Experience
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // Navegación a habilidades
+    { 
+      command: "cd ../skills", 
+      output: "", 
+      delay: 1000 
+    },
+    
+    // Listar categorías de habilidades
+    { 
+      command: "ls", 
+      output: `frontend/
+backend/
+databases/
+devops/`, 
+      delay: 2000 
+    },
+    
+    // Frontend skills
+    { 
+      command: "cd frontend && ls -la", 
+      output: `total 20
+drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
+drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
+-rw-r--r--  1 user user   45 Jan 27 23:00 react.md
+-rw-r--r--  1 user user   52 Jan 27 23:00 angular.md
+-rw-r--r--  1 user user   48 Jan 27 23:00 typescript.md
+-rw-r--r--  1 user user   50 Jan 27 23:00 javascript.md
+-rw-r--r--  1 user user   42 Jan 27 23:00 html-css.md`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat react.md", 
+      output: `# React
+**Nivel:** Avanzado
+**Experiencia:** 4+ años
+**Proyectos:** 15+ aplicaciones
+**Especialidad:** Hooks, Context, Redux`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat angular.md", 
+      output: `# Angular
+**Nivel:** Avanzado
+**Experiencia:** 3+ años
+**Proyectos:** 8+ aplicaciones
+**Especialidad:** RxJS, NgRx, Material`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat typescript.md", 
+      output: `# TypeScript
+**Nivel:** Avanzado
+**Experiencia:** 3+ años
+**Proyectos:** 20+ aplicaciones
+**Especialidad:** Tipado estricto, interfaces`, 
+      delay: 2000 
+    },
+    
+    // Clear después de Frontend
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // Backend skills
+    { 
+      command: "cd ../backend && ls -la", 
+      output: `total 16
+drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
+drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
+-rw-r--r--  1 user user   45 Jan 27 23:00 nodejs.md
+-rw-r--r--  1 user user   52 Jan 27 23:00 python.md
+-rw-r--r--  1 user user   48 Jan 27 23:00 dotnet.md
+-rw-r--r--  1 user user   50 Jan 27 23:00 php.md`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat nodejs.md", 
+      output: `# Node.js
+**Nivel:** Avanzado
+**Experiencia:** 4+ años
+**Proyectos:** 25+ aplicaciones
+**Especialidad:** Express, APIs REST, microservicios`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat python.md", 
+      output: `# Python (FastAPI)
+**Nivel:** Intermedio-Avanzado
+**Experiencia:** 2+ años
+**Proyectos:** 10+ aplicaciones
+**Especialidad:** FastAPI, automatización, APIs`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat dotnet.md", 
+      output: `# C# & .NET Core
+**Nivel:** Intermedio-Avanzado
+**Experiencia:** 3+ años
+**Proyectos:** 12+ aplicaciones
+**Especialidad:** ASP.NET Core, Entity Framework`, 
+      delay: 2000 
+    },
+    
+    // Clear después de Backend
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // Databases
+    { 
+      command: "cd ../databases && ls -la", 
+      output: `total 16
+drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
+drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
+-rw-r--r--  1 user user   45 Jan 27 23:00 mysql.md
+-rw-r--r--  1 user user   52 Jan 27 23:00 postgresql.md
+-rw-r--r--  1 user user   48 Jan 27 23:00 sqlserver.md
+-rw-r--r--  1 user user   50 Jan 27 23:00 redshift.md`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat mysql.md", 
+      output: `# MySQL
+**Nivel:** Avanzado
+**Experiencia:** 5+ años
+**Proyectos:** 30+ bases de datos
+**Especialidad:** Optimización, stored procedures`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat postgresql.md", 
+      output: `# PostgreSQL
+**Nivel:** Avanzado
+**Experiencia:** 3+ años
+**Proyectos:** 15+ bases de datos
+**Especialidad:** JSON, funciones, triggers`, 
+      delay: 2000 
+    },
+    
+    // Clear después de Databases
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // DevOps
+    { 
+      command: "cd ../devops && ls -la", 
+      output: `total 20
+drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
+drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
+-rw-r--r--  1 user user   45 Jan 27 23:00 docker.md
+-rw-r--r--  1 user user   52 Jan 27 23:00 aws.md
+-rw-r--r--  1 user user   48 Jan 27 23:00 microservices.md
+-rw-r--r--  1 user user   50 Jan 27 23:00 apis.md
+-rw-r--r--  1 user user   42 Jan 27 23:00 karma.md`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat docker.md", 
+      output: `# Docker
+**Nivel:** Intermedio-Avanzado
+**Experiencia:** 3+ años
+**Proyectos:** 20+ contenedores
+**Especialidad:** Docker Compose, optimización`, 
+      delay: 2000 
+    },
+    
+    { 
+      command: "cat aws.md", 
+      output: `# AWS & Azure
+**Nivel:** Intermedio
+**Experiencia:** 2+ años
+**Proyectos:** 8+ deployments
+**Especialidad:** EC2, S3, Lambda, Azure DevOps`, 
+      delay: 2000 
+    },
+    
+    // Clear después de DevOps
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 500 
+    },
+    
+    // Volver al directorio raíz
+    { 
+      command: "cd ~/portfolio", 
+      output: "", 
+      delay: 1000 
+    },
+    
+    // Estado del sistema
+    { 
+      command: "systemctl status portfolio", 
+      output: `● portfolio.service - Portfolio Personal
+     Loaded: loaded (/etc/systemd/system/portfolio.service; enabled)
+     Active: active (running) since Mon 2025-01-27 23:00:00 UTC
+     Main PID: 1234 (node)
+     Status: "Portfolio running successfully"
+     Tasks: 15 (limit: 4915)
+     Memory: 45.2M
+     CGroup: /system.slice/portfolio.service`, 
+      delay: 3000 
+    },
+    
+    // Git log
+    { 
+      command: "git log --oneline -5", 
+      output: `a1b2c3d ✨ Add new portfolio design
+f4e5d6a 🚀 Deploy to production
+g7h8i9j 🐛 Fix terminal animation
+h1i2j3k 📝 Update experience section
+i4j5k6l 🎨 Improve responsive design`, 
+      delay: 3000 
+    },
+    
+    // Clear final y reinicio
+    { 
+      command: "clear", 
+      output: "", 
+      delay: 1000 
+    }
+  ];
+
+  let currentCommandIndex = 0;
+  let currentCharIndex = 0;
+  let isTypingCommand = true;
+
+  // Función para crear elemento de línea
+  function createLine(content: string, type: 'command' | 'output' | 'prompt' = 'command') {
+    const line = document.createElement('div');
+    line.className = 'flex items-start';
+    
+    if (type === 'command') {
+      line.innerHTML = `<span class="text-success mr-2 font-bold">$</span><span class="text-primary-text">${content}</span>`;
+    } else if (type === 'output') {
+      // Para el JSON, mantener el formato
+      if (content.includes('{') || content.includes('[')) {
+        line.innerHTML = `<span class="text-secondary-text whitespace-pre font-mono">${content}</span>`;
+      } else {
+        // Para contenido con saltos de línea, procesar cada línea
+        const lines = content.split('\n');
+        if (lines.length > 1) {
+          // Crear múltiples líneas para el output
+          const outputContainer = document.createElement('div');
+          outputContainer.className = 'w-full';
+          
+          lines.forEach((lineText, index) => {
+            const lineSpan = document.createElement('div');
+            lineSpan.className = 'text-secondary-text whitespace-pre font-mono';
+            lineSpan.textContent = lineText;
+            outputContainer.appendChild(lineSpan);
+          });
+          
+          return outputContainer;
+        } else {
+          line.innerHTML = `<span class="text-secondary-text">${content}</span>`;
+        }
+      }
+    } else {
+      line.innerHTML = `<span class="text-success mr-2 font-bold">$</span><span class="text-primary-text">${content}</span>`;
     }
     
-    /* Custom animation for code typing effect */
-    @keyframes typewriter {
-        0% { opacity: 0; }
-        50% { opacity: 1; }
-        100% { opacity: 0; }
+    return line;
+  }
+
+  // Función para escribir progresivamente
+  function typeProgressive() {
+    const terminalContent = document.getElementById('terminal-content');
+    const currentCommand = document.getElementById('current-command');
+    const cursor = document.getElementById('typing-cursor');
+    
+    if (!terminalContent || !currentCommand || !cursor) return;
+
+    if (currentCommandIndex >= terminalCommands.length) {
+      // Reiniciar cuando termine
+      setTimeout(() => {
+        terminalContent.innerHTML = '';
+        currentCommandIndex = 0;
+        currentCharIndex = 0;
+        isTypingCommand = true;
+        typeProgressive();
+      }, 2000);
+      return;
+    }
+
+    const currentCmd = terminalCommands[currentCommandIndex];
+
+    if (isTypingCommand) {
+      // Escribiendo el comando
+      if (currentCharIndex < currentCmd.command.length) {
+        currentCommand.textContent = currentCmd.command.substring(0, currentCharIndex + 1);
+        currentCharIndex++;
+        setTimeout(typeProgressive, 50 + Math.random() * 30);
+      } else {
+        // Comando completado, mostrar output
+        isTypingCommand = false;
+        currentCharIndex = 0;
+        
+        // Agregar línea del comando completado
+        const commandLine = createLine(currentCmd.command, 'command');
+        terminalContent.appendChild(commandLine);
+        currentCommand.textContent = '';
+        
+        // Mostrar output si existe
+        if (currentCmd.output) {
+          setTimeout(() => {
+            const outputLine = createLine(currentCmd.output!, 'output');
+            terminalContent.appendChild(outputLine);
+            
+            // Pasar al siguiente comando
+            setTimeout(() => {
+              currentCommandIndex++;
+              isTypingCommand = true;
+              currentCharIndex = 0;
+              typeProgressive();
+            }, currentCmd.delay);
+          }, 200);
+        } else {
+          // Para comandos como 'clear' o 'cd' sin output
+          setTimeout(() => {
+            // Si es el comando clear, limpiar la terminal
+            if (currentCmd.command === 'clear') {
+              clearTerminal();
+            }
+            
+            currentCommandIndex++;
+            isTypingCommand = true;
+            currentCharIndex = 0;
+            typeProgressive();
+          }, currentCmd.delay);
+        }
+      }
+    }
+  }
+
+  // Función para limpiar la terminal
+  function clearTerminal() {
+    const terminalContent = document.getElementById('terminal-content');
+    if (terminalContent) {
+      terminalContent.innerHTML = '';
+    }
+  }
+
+  // Animación del cursor con manejo de errores
+  function animateCursor() {
+    const cursor = document.getElementById('typing-cursor');
+    if (!cursor) return;
+    
+    if (!anime) {
+      // Fallback: animación CSS simple si anime.js no está disponible
+      cursor.classList.add('animate-pulse');
+      return;
     }
     
-    .animate-pulse {
-        animation: typewriter 2s infinite;
+    try {
+      anime({
+        targets: cursor,
+        opacity: [0, 1, 0],
+        duration: 900,
+        loop: true,
+        easing: 'steps(2)'
+      });
+    } catch (error) {
+      console.warn('Error animating cursor with anime.js, using CSS fallback:', error);
+      cursor.classList.add('animate-pulse');
     }
-</style>
+  }
+
+  // Iniciar animaciones
+  document.addEventListener('DOMContentLoaded', async () => {
+    await loadAnimeJS();
+    animateCursor();
+    setTimeout(typeProgressive, 1000);
+  });
+</script>
