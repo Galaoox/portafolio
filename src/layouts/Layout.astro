@@ -44,6 +44,15 @@ import '../styles/global.css';
 		<!-- Favicon -->
 		<link rel="icon" href="https://placehold.co/32x32/7F5AF0/FFFFFF?text=EV" type="image/png" />
 
+		<!-- Google tag (gtag.js) -->
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-QWE1S2BG2R"></script>
+		<script type="text/partytown">
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-QWE1S2BG2R');
+		</script>
+
 		<!-- Google Fonts Preconnect -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,8 +61,6 @@ import '../styles/global.css';
 			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 		</noscript>
 
-		<!-- Import animations -->
-		<!-- <link rel="stylesheet" href="/src/styles/animations.css" /> -->
 
 		<meta name="generator" content={Astro.generator} />
 	</head>
