@@ -1,8 +1,9 @@
 ---
 // Hero section component
+import LaptopWireframe from './LaptopWireframe.astro';
 ---
 
-<section id="hero" class="min-h-screen flex flex-col justify-center items-start pt-24">
+<section id="hero" class="min-h-screen flex flex-col justify-center items-start pt-24 relative">
     <div class="w-full max-w-3xl animate-fade-in-up">
         <h1 id="hero-headline" class="text-4xl md:text-6xl font-bold text-primary-text leading-tight glitch-animation">
             Erick Andres Vergara
@@ -31,4 +32,7 @@
             </a>
         </div>
     </div>
+    
+    <!-- Laptop wireframe -->
+    <LaptopWireframe />
 </section>

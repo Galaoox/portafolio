@@ -1,0 +1,90 @@
+---
+// Laptop wireframe component with animated code
+---
+
+<div class="laptop-wireframe hidden lg:block absolute right-8 top-1/2 transform -translate-y-1/2 opacity-20 hover:opacity-30 transition-opacity duration-300">
+    <!-- Laptop base -->
+    <div class="relative">
+        <!-- Screen -->
+        <div class="w-80 h-48 bg-gray-800 border-2 border-gray-600 rounded-lg relative overflow-hidden">
+            <!-- Screen content -->
+            <div class="p-4 h-full">
+                <!-- Code lines -->
+                <div class="space-y-1 text-xs">
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">1</span>
+                        <span class="text-purple-400">const</span>
+                        <span class="text-gray-300 ml-1">developer</span>
+                        <span class="text-gray-300">=</span>
+                        <span class="text-yellow-400 ml-1">'Erick'</span>
+                        <span class="text-gray-300">;</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">2</span>
+                        <span class="text-purple-400">const</span>
+                        <span class="text-gray-300 ml-1">skills</span>
+                        <span class="text-gray-300">=</span>
+                        <span class="text-yellow-400 ml-1">[</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">3</span>
+                        <span class="text-gray-300 ml-4">'JavaScript'</span>
+                        <span class="text-gray-300">,</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">4</span>
+                        <span class="text-gray-300 ml-4">'React'</span>
+                        <span class="text-gray-300">,</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">5</span>
+                        <span class="text-gray-300 ml-4">'Node.js'</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">6</span>
+                        <span class="text-yellow-400 ml-4">]</span>
+                        <span class="text-gray-300">;</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">7</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-blue-400 mr-2">8</span>
+                        <span class="text-purple-400">console</span>
+                        <span class="text-gray-300">.</span>
+                        <span class="text-blue-400">log</span>
+                        <span class="text-gray-300">(</span>
+                        <span class="text-yellow-400">'Hello World!'</span>
+                        <span class="text-gray-300">);</span>
+                    </div>
+                </div>
+                
+                <!-- Cursor blink animation -->
+                <div class="absolute bottom-4 right-4 w-2 h-4 bg-green-400 animate-pulse"></div>
+            </div>
+        </div>
+        
+        <!-- Laptop base -->
+        <div class="w-96 h-2 bg-gray-700 rounded-b-lg mx-auto"></div>
+        
+        <!-- Keyboard area -->
+        <div class="w-80 h-1 bg-gray-600 mx-auto mt-1"></div>
+    </div>
+</div>
+
+<style>
+    .laptop-wireframe {
+        z-index: 10;
+    }
+    
+    /* Custom animation for code typing effect */
+    @keyframes typewriter {
+        0% { opacity: 0; }
+        50% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    
+    .animate-pulse {
+        animation: typewriter 2s infinite;
+    }
+</style>
