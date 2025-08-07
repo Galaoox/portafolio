@@ -1,23 +1,104 @@
 ---
-// Particles background component
+// Particles background component with lazy loading
 ---
 
-<div id="particles-js" class="fixed inset-0 pointer-events-none z-0"></div>
+<div id="particles-js" class="fixed inset-0 pointer-events-none z-0">
+	<!-- Loading indicator -->
+	<div id="particles-loading" class="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm transition-opacity duration-500">
+		<div class="flex flex-col items-center space-y-3">
+			<div class="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
+			<p class="text-sm text-secondary-text">Cargando efectos visuales...</p>
+		</div>
+	</div>
+</div>
 
 <script>
-	// Initialize particles when the DOM is loaded
+	// Type declarations for particles.js
+	declare global {
+		interface Window {
+			particlesJS: any;
+			pJSDom: any[];
+		}
+	}
+	
+	// Lazy load particles.js when hero section enters viewport
 	document.addEventListener('DOMContentLoaded', function() {
-		// Load particles configuration
-		particlesJS.load('particles-js', '/particles-config.json', function() {
-			console.log('Particles.js config loaded');
+		const heroSection = document.getElementById('hero');
+		const particlesContainer = document.getElementById('particles-js');
+		const loadingIndicator = document.getElementById('particles-loading');
+		
+		if (!heroSection || !particlesContainer) return;
+		
+		// Create intersection observer to detect when hero enters viewport
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					// Load particles.js library dynamically
+					loadParticlesJS();
+					// Stop observing after loading
+					observer.disconnect();
+				}
+			});
+		}, { 
+			threshold: 0.1,
+			rootMargin: '50px' // Start loading slightly before hero is fully visible
 		});
 		
-		// Ensure interactivity is working
-		setTimeout(() => {
-			if (window.pJSDom && window.pJSDom[0]) {
-				console.log('Particles interactivity enabled');
+		// Start observing the hero section
+		observer.observe(heroSection);
+		
+		// Function to dynamically load particles.js
+		function loadParticlesJS() {
+			// Check if particles.js is already loaded
+			if ((window as any).particlesJS) {
+				initializeParticles();
+				return;
 			}
-		}, 1000);
+			
+			// Create script element for particles.js
+			const script = document.createElement('script');
+			script.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js';
+			script.async = true;
+			
+			script.onload = function() {
+				console.log('Particles.js library loaded');
+				initializeParticles();
+			};
+			
+			script.onerror = function() {
+				console.error('Failed to load particles.js library');
+				hideLoadingIndicator();
+			};
+			
+			// Add script to head
+			document.head.appendChild(script);
+		}
+		
+		// Function to initialize particles
+		function initializeParticles() {
+			// Load particles configuration
+			(window as any).particlesJS.load('particles-js', '/particles-config.json', function() {
+				console.log('Particles.js config loaded');
+				hideLoadingIndicator();
+			});
+			
+			// Ensure interactivity is working
+			setTimeout(() => {
+				if ((window as any).pJSDom && (window as any).pJSDom[0]) {
+					console.log('Particles interactivity enabled');
+				}
+			}, 1000);
+		}
+		
+		// Function to hide loading indicator
+		function hideLoadingIndicator() {
+			if (loadingIndicator) {
+				loadingIndicator.style.opacity = '0';
+				setTimeout(() => {
+					loadingIndicator.style.display = 'none';
+				}, 500);
+			}
+		}
 	});
 </script>
 
