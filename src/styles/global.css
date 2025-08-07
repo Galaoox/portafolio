@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0D0D12;
+  --color-surface: #1E1E24;
+  --color-primary-text: #F8F8FF;
+  --color-secondary-text: #707991;
+  --color-accent: #7F5AF0;
+  --color-success: #2CB67D;
+  --color-error: #EF4444;
+  
+  --font-family-sans: Inter, sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+  
+  --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

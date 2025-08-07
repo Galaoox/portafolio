@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Metadata -->
+    <title>Erick Vergara - Desarrollador Full Stack | Portafolio</title>
+    <meta name="description" content="Portafolio de Erick Vergara, Desarrollador Full Stack con experiencia en React, Angular, .NET Core, y Python. Enfocado en soluciones escalables y optimización de rendimiento.">
+    <meta name="keywords" content="Erick Vergara, Desarrollador Full Stack, React Developer, .NET Developer, Python Developer, Portafolio, Full Stack Developer">
+    <meta name="author" content="Erick Andres Vergara Noriega">
+    <link rel="canonical" href="https://erickvergara.dev"> <!-- Replace with actual domain -->
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://erickvergara.dev/"> <!-- Replace with actual domain -->
+    <meta property="og:title" content="Erick Vergara - Desarrollador Full Stack | Portafolio">
+    <meta property="og:description" content="Desarrollador Full Stack apasionado por resolver problemas complejos y construir software de alto impacto.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0D0D12/F8F8FF?text=EV">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://erickvergara.dev/"> <!-- Replace with actual domain -->
+    <meta property="twitter:title" content="Erick Vergara - Desarrollador Full Stack | Portafolio">
+    <meta property="twitter:description" content="Portafolio de Erick Vergara, Desarrollador Full Stack con experiencia en React, Angular, .NET Core, y Python.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/0D0D12/F8F8FF?text=EV">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/7F5AF0/FFFFFF?text=EV" type="image/png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#0D0D12',
+                        surface: '#1E1E24',
+                        'primary-text': '#F8F8FF',
+                        'secondary-text': '#707991',
+                        accent: '#7F5AF0',
+                        success: '#2CB67D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    animation: {
+                       'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                           '0%': { opacity: '0', transform: 'translateY(20px)' },
+                           '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Simple animation for elements appearing on scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+
+</head>
+<body class="bg-background text-primary-text font-sans antialiased">
+    <!-- Accessibility Skip Link -->
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-3">Saltar al contenido principal</a>
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm transition-shadow duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-accent font-mono">EV</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-secondary-text hover:text-primary-text transition">Sobre mí</a>
+                <a href="#experience" class="text-secondary-text hover:text-primary-text transition">Experiencia</a>
+                <a href="#skills" class="text-secondary-text hover:text-primary-text transition">Habilidades</a>
+                <a href="#contact" class="text-secondary-text hover:text-primary-text transition">Contacto</a>
+            </div>
+            <a href="/CV-Erick-Vergara.pdf" download="CV-Erick-Vergara.pdf" class="hidden md:inline-block bg-accent hover:bg-opacity-80 text-primary-text font-semibold px-5 py-2 rounded-lg transition">
+                Descargar CV
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-primary-text focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-background/95 z-50 md:hidden">
+        <div class="flex justify-end p-6">
+            <button id="close-menu-button" class="text-primary-text">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
+            <a href="#about" class="mobile-nav-link text-secondary-text hover:text-primary-text transition">Sobre mí</a>
+            <a href="#experience" class="mobile-nav-link text-secondary-text hover:text-primary-text transition">Experiencia</a>
+            <a href="#skills" class="mobile-nav-link text-secondary-text hover:text-primary-text transition">Habilidades</a>
+            <a href="#contact" class="mobile-nav-link text-secondary-text hover:text-primary-text transition">Contacto</a>
+            <a href="/CV-Erick-Vergara.pdf" download="CV-Erick-Vergara.pdf" class="mt-8 inline-block bg-accent hover:bg-opacity-80 text-primary-text font-semibold px-8 py-4 rounded-lg transition">
+                Descargar CV
+            </a>
+        </div>
+    </div>
+
+    <main id="main" class="container mx-auto px-6">
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center items-start pt-24">
+            <div class="w-full max-w-3xl animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-bold text-primary-text leading-tight">
+                    Erick Andres Vergara
+                </h1>
+                <h2 class="text-3xl md:text-5xl font-bold text-secondary-text mt-2">
+                    Desarrollador Full Stack
+                </h2>
+                <p class="mt-6 text-lg text-secondary-text max-w-xl">
+                    Apasionado por resolver problemas complejos, crear soluciones escalables y construir software de alto impacto que mejore la experiencia del usuario.
+                </p>
+                <div class="mt-8 flex items-center space-x-6">
+                    <a href="mailto:erickandres30@gmail.com" class="text-secondary-text hover:text-accent transition" aria-label="Enviar correo electrónico">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-secondary-text hover:text-accent transition" aria-label="Perfil de GitHub">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-secondary-text hover:text-accent transition" aria-label="Perfil de LinkedIn">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32 fade-in-section">
+            <div class="grid md:grid-cols-5 gap-10 items-center">
+                <div class="md:col-span-3">
+                    <h2 class="text-3xl font-bold text-primary-text mb-4">Sobre mí</h2>
+                    <p class="text-secondary-text space-y-4">
+                        <span>
+                            Desarrollador Full Stack con más de 5 años de experiencia en React, Angular, .NET Core, Node.js y Python. Me enfoco en crear soluciones escalables, optimizar el rendimiento de sistemas y desarrollar arquitecturas eficientes.
+                        </span>
+                        <span>
+                            Mi especialidad es la integración con APIs, la automatización de procesos y la mejora continua de la experiencia de usuario. Disfruto enfrentando desafíos técnicos y transformando ideas en software robusto y de alto impacto.
+                        </span>
+                    </p>
+                </div>
+                <div class="md:col-span-2 flex justify-center md:justify-end">
+                    <div class="w-64 h-64 rounded-full bg-surface border-4 border-accent/20 flex items-center justify-center">
+                        <img src="https://placehold.co/256x256/1E1E24/F8F8FF?text=Foto" alt="Foto de Erick Vergara" class="rounded-full w-full h-full object-cover" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 md:py-32 fade-in-section">
+            <h2 class="text-3xl font-bold text-primary-text mb-12 text-center">Experiencia Profesional</h2>
+            <div class="relative max-w-3xl mx-auto">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-surface" aria-hidden="true"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-16">
+                    <!-- Item 1 -->
+                    <div class="relative flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <h3 class="font-bold text-xl text-primary-text">Desarrollador Full Stack</h3>
+                            <p class="text-secondary-text">Periferia IT</p>
+                            <p class="text-sm text-accent font-mono mt-1">Mar 2025 - Actual</p>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-4 border-background"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="relative flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-4 border-background"></div>
+                        <div class="w-1/2 pl-8">
+                            <h3 class="font-bold text-xl text-primary-text">Desarrollador Full Stack</h3>
+                            <p class="text-secondary-text">Grupo R5</p>
+                            <p class="text-sm text-accent font-mono mt-1">Ene 2023 - Mar 2025</p>
+                            <ul class="list-disc list-outside text-secondary-text mt-2 pl-4 text-sm space-y-1">
+                                <li>Optimización del rendimiento web en un 42% en colaboración con SEO.</li>
+                                <li>Desarrollo de microservicios con Python y FastAPI para integrar APIs.</li>
+                                <li>Creación de reportes en Metabase para la toma de decisiones.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="relative flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <h3 class="font-bold text-xl text-primary-text">Desarrollador Full Stack</h3>
+                            <p class="text-secondary-text">MVM Ingeniería de Software</p>
+                            <p class="text-sm text-accent font-mono mt-1">Jul 2021 - Ene 2023</p>
+                            <ul class="list-disc list-outside text-secondary-text mt-2 pl-4 text-sm space-y-1">
+                                <li>Desarrollo de módulos para el sector energético con Angular y .NET Core.</li>
+                                <li>Reducción de tiempos de procesamiento en un 20% mediante microservicios.</li>
+                            </ul>
+                        </div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-4 border-background"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                     <!-- Item 4 -->
+                    <div class="relative flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent border-4 border-background"></div>
+                        <div class="w-1/2 pl-8">
+                            <h3 class="font-bold text-xl text-primary-text">Desarrollador de Software</h3>
+                            <p class="text-secondary-text">Logical Software Factory</p>
+                            <p class="text-sm text-accent font-mono mt-1">Ene 2021 - Jul 2021</p>
+                             <ul class="list-disc list-outside text-secondary-text mt-2 pl-4 text-sm space-y-1">
+                                <li>Optimización de stored procedures en SQL Server, reduciendo tiempos en un 83%.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 md:py-32 fade-in-section">
+            <h2 class="text-3xl font-bold text-primary-text mb-12 text-center">Habilidades Técnicas</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-surface p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-4 text-accent">Frontend</h3>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li>React</li>
+                        <li>Angular</li>
+                        <li>TypeScript</li>
+                        <li>JavaScript</li>
+                        <li>HTML & CSS</li>
+                    </ul>
+                </div>
+                <div class="bg-surface p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-4 text-accent">Backend</h3>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li>Node.js</li>
+                        <li>Python (FastAPI)</li>
+                        <li>C# & .NET Core</li>
+                        <li>PHP (Laravel)</li>
+                    </ul>
+                </div>
+                <div class="bg-surface p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-4 text-accent">Bases de Datos</h3>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>SQL Server</li>
+                        <li>Redshift</li>
+                    </ul>
+                </div>
+                <div class="bg-surface p-6 rounded-lg">
+                    <h3 class="font-bold text-lg mb-4 text-accent">DevOps & Testing</h3>
+                    <ul class="space-y-2 text-secondary-text">
+                        <li>Docker</li>
+                        <li>Azure & AWS</li>
+                        <li>Microservicios</li>
+                        <li>APIs REST</li>
+                        <li>Karma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32 text-center fade-in-section">
+            <h2 class="text-3xl font-bold text-primary-text mb-4">Ponerse en contacto</h2>
+            <p class="max-w-xl mx-auto text-secondary-text mb-8">
+                Actualmente estoy abierto a nuevas oportunidades y colaboraciones. Si tienes un proyecto en mente o simplemente quieres saludar, no dudes en enviarme un mensaje.
+            </p>
+            <a href="mailto:erickandres30@gmail.com" class="inline-block bg-accent hover:bg-opacity-80 text-primary-text font-semibold px-8 py-4 rounded-lg transition text-lg">
+                ¡Hablemos!
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-surface mt-20">
+        <div class="container mx-auto px-6 py-6 text-center text-secondary-text text-sm">
+            <p>&copy; 2025 Erick Andres Vergara Noriega. Diseñado y construido con ❤️.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        const openMenu = () => mobileMenu.classList.remove('hidden');
+        const closeMenu = () => mobileMenu.classList.add('hidden');
+
+        mobileMenuButton.addEventListener('click', openMenu);
+        closeMenuButton.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // --- Header Shadow on Scroll ---
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-lg', 'shadow-accent/5');
+            } else {
+                header.classList.remove('shadow-lg', 'shadow-accent/5');
+            }
+        });
+
+        // --- Fade-in sections on scroll ---
+        const sections = document.querySelectorAll('.fade-in-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
