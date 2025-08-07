@@ -105,6 +105,16 @@ const { title, description = "Portafolio de Erick Vergara, Desarrollador Full St
 			sections.forEach(section => {
 				observer.observe(section);
 			});
+			
+			// --- Glitch animation for headline ---
+			const heroHeadline = document.getElementById('hero-headline');
+			if (heroHeadline) {
+				// Initial glitch animation completes, then start repeating
+				setTimeout(() => {
+					heroHeadline.classList.remove('glitch-animation');
+					heroHeadline.classList.add('glitch-repeating');
+				}, 1300); // 0.8s delay + 0.5s animation duration
+			}
 		</script>
 	</body>
 </html>
