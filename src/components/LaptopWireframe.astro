@@ -78,82 +78,9 @@
       delay: 1000 
     },
     
-    // Comando About
-    { 
-      command: "cat about.md", 
-      output: `# Sobre mí
-
-Desarrollador Full Stack con más de 5 años de experiencia en React, Angular, .NET Core, Node.js y Python.
-
-Especialidades:
-• Soluciones escalables
-• Optimización de rendimiento
-• Arquitecturas eficientes
-• Integración con APIs
-• Automatización de procesos
-
-Enfoque en transformar ideas en software robusto y de alto impacto.`, 
-      delay: 4000 
-    },
-    
-    // Clear después de About
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
-    },
-    
-    // Navegación a experiencia
-    { 
-      command: "cd experience", 
-      output: "", 
-      delay: 1000 
-    },
-    
-    // Listar experiencia
-    { 
-      command: "ls -la", 
-      output: `total 16
-drwxr-xr-x  4 user user 4096 Jan 27 23:00 .
-drwxr-xr-x  6 user user 4096 Jan 27 23:00 ..
--rw-r--r--  1 user user  156 Jan 27 23:00 periferia-it.md
--rw-r--r--  1 user user  234 Jan 27 23:00 grupo-r5.md
--rw-r--r--  1 user user  189 Jan 27 23:00 mvm-ingenieria.md
--rw-r--r--  1 user user  145 Jan 27 23:00 logical-software.md`, 
-      delay: 3000 
-    },
-    
-    // Detalles de experiencia
-    { 
-      command: "cat periferia-it.md", 
-      output: `# Periferia IT
-**Cargo:** Desarrollador Full Stack
-**Período:** Mar 2025 - Actual
-**Tecnologías:** React, Node.js, Python, FastAPI
-**Logros:** Optimización de rendimiento web en 42%`, 
-      delay: 3000 
-    },
-    
-    { 
-      command: "cat grupo-r5.md", 
-      output: `# Grupo R5
-**Cargo:** Desarrollador Full Stack
-**Período:** Ene 2023 - Mar 2025
-**Tecnologías:** Python, FastAPI, Metabase
-**Logros:** Desarrollo de microservicios, reportes en Metabase`, 
-      delay: 3000 
-    },
-    
-    // Clear después de Experience
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
-    },
-    
     // Navegación a habilidades
     { 
-      command: "cd ../skills", 
+      command: "cd skills", 
       output: "", 
       delay: 1000 
     },
@@ -165,189 +92,113 @@ drwxr-xr-x  6 user user 4096 Jan 27 23:00 ..
 backend/
 databases/
 devops/`, 
-      delay: 2000 
+      delay: 3000 
     },
     
     // Frontend skills
     { 
-      command: "cd frontend && ls -la", 
-      output: `total 20
-drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
-drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
--rw-r--r--  1 user user   45 Jan 27 23:00 react.md
--rw-r--r--  1 user user   52 Jan 27 23:00 angular.md
--rw-r--r--  1 user user   48 Jan 27 23:00 typescript.md
--rw-r--r--  1 user user   50 Jan 27 23:00 javascript.md
--rw-r--r--  1 user user   42 Jan 27 23:00 html-css.md`, 
-      delay: 2000 
+      command: "cd frontend && ls", 
+      output: `react.md
+angular.md
+typescript.md
+javascript.md
+html-css.md`, 
+      delay: 3000 
     },
     
     { 
-      command: "cat react.md", 
-      output: `# React
-**Nivel:** Avanzado
-**Experiencia:** 4+ años
-**Proyectos:** 15+ aplicaciones
-**Especialidad:** Hooks, Context, Redux`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat angular.md", 
-      output: `# Angular
-**Nivel:** Avanzado
-**Experiencia:** 3+ años
-**Proyectos:** 8+ aplicaciones
-**Especialidad:** RxJS, NgRx, Material`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat typescript.md", 
-      output: `# TypeScript
-**Nivel:** Avanzado
-**Experiencia:** 3+ años
-**Proyectos:** 20+ aplicaciones
-**Especialidad:** Tipado estricto, interfaces`, 
-      delay: 2000 
-    },
-    
-    // Clear después de Frontend
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
+      command: "cat frontend-overview.md", 
+      output: `# Frontend Development
+
+**Experiencia:** 5+ años desarrollando interfaces modernas y responsivas.
+
+**Logros Destacados:**
+✅ Mejora del 30% en la interacción de usuarios
+✅ Optimización de Core Web Vitals (3s → 2.1s)
+✅ Implementación de UI/UX con React y Angular
+✅ Desarrollo de interfaces accesibles y responsivas
+
+**Tecnologías:** React, Angular, TypeScript, JavaScript, HTML/CSS`, 
+      delay: 5000 
     },
     
     // Backend skills
     { 
-      command: "cd ../backend && ls -la", 
-      output: `total 16
-drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
-drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
--rw-r--r--  1 user user   45 Jan 27 23:00 nodejs.md
--rw-r--r--  1 user user   52 Jan 27 23:00 python.md
--rw-r--r--  1 user user   48 Jan 27 23:00 dotnet.md
--rw-r--r--  1 user user   50 Jan 27 23:00 php.md`, 
-      delay: 2000 
+      command: "cd ../backend && ls", 
+      output: `nodejs.md
+python.md
+dotnet.md
+php.md`, 
+      delay: 3000 
     },
     
     { 
-      command: "cat nodejs.md", 
-      output: `# Node.js
-**Nivel:** Avanzado
-**Experiencia:** 4+ años
-**Proyectos:** 25+ aplicaciones
-**Especialidad:** Express, APIs REST, microservicios`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat python.md", 
-      output: `# Python (FastAPI)
-**Nivel:** Intermedio-Avanzado
-**Experiencia:** 2+ años
-**Proyectos:** 10+ aplicaciones
-**Especialidad:** FastAPI, automatización, APIs`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat dotnet.md", 
-      output: `# C# & .NET Core
-**Nivel:** Intermedio-Avanzado
-**Experiencia:** 3+ años
-**Proyectos:** 12+ aplicaciones
-**Especialidad:** ASP.NET Core, Entity Framework`, 
-      delay: 2000 
-    },
-    
-    // Clear después de Backend
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
+      command: "cat backend-overview.md", 
+      output: `# Backend Development
+
+**Experiencia:** 5+ años construyendo APIs y microservicios escalables.
+
+**Logros Destacados:**
+✅ Desarrollo de microservicios con Python y FastAPI
+✅ Reducción del 20% en tiempos de procesamiento
+✅ Integración de APIs (Google Analytics, Meta Ads, TikTok)
+✅ Optimización de arquitecturas escalables
+
+**Tecnologías:** Node.js, Python (FastAPI), C# & .NET Core, PHP (Laravel)`, 
+      delay: 5000 
     },
     
     // Databases
     { 
-      command: "cd ../databases && ls -la", 
-      output: `total 16
-drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
-drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
--rw-r--r--  1 user user   45 Jan 27 23:00 mysql.md
--rw-r--r--  1 user user   52 Jan 27 23:00 postgresql.md
--rw-r--r--  1 user user   48 Jan 27 23:00 sqlserver.md
--rw-r--r--  1 user user   50 Jan 27 23:00 redshift.md`, 
-      delay: 2000 
+      command: "cd ../databases && ls", 
+      output: `mysql.md
+postgresql.md
+sqlserver.md
+redshift.md`, 
+      delay: 3000 
     },
     
     { 
-      command: "cat mysql.md", 
-      output: `# MySQL
-**Nivel:** Avanzado
-**Experiencia:** 5+ años
-**Proyectos:** 30+ bases de datos
-**Especialidad:** Optimización, stored procedures`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat postgresql.md", 
-      output: `# PostgreSQL
-**Nivel:** Avanzado
-**Experiencia:** 3+ años
-**Proyectos:** 15+ bases de datos
-**Especialidad:** JSON, funciones, triggers`, 
-      delay: 2000 
-    },
-    
-    // Clear después de Databases
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
+      command: "cat databases-overview.md", 
+      output: `# Database Management
+
+**Experiencia:** 5+ años optimizando y administrando bases de datos.
+
+**Logros Destacados:**
+✅ Reducción del 83% en tiempos de consulta SQL Server
+✅ Optimización de stored procedures y queries
+✅ Migración de datos a Redshift para analítica
+✅ Estructuración de modelos de datos escalables
+
+**Tecnologías:** MySQL, PostgreSQL, SQL Server, Redshift`, 
+      delay: 5000 
     },
     
     // DevOps
     { 
-      command: "cd ../devops && ls -la", 
-      output: `total 20
-drwxr-xr-x  2 user user 4096 Jan 27 23:00 .
-drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
--rw-r--r--  1 user user   45 Jan 27 23:00 docker.md
--rw-r--r--  1 user user   52 Jan 27 23:00 aws.md
--rw-r--r--  1 user user   48 Jan 27 23:00 microservices.md
--rw-r--r--  1 user user   50 Jan 27 23:00 apis.md
--rw-r--r--  1 user user   42 Jan 27 23:00 karma.md`, 
-      delay: 2000 
+      command: "cd ../devops && ls", 
+      output: `docker.md
+aws.md
+microservices.md
+apis.md
+karma.md`, 
+      delay: 3000 
     },
     
     { 
-      command: "cat docker.md", 
-      output: `# Docker
-**Nivel:** Intermedio-Avanzado
-**Experiencia:** 3+ años
-**Proyectos:** 20+ contenedores
-**Especialidad:** Docker Compose, optimización`, 
-      delay: 2000 
-    },
-    
-    { 
-      command: "cat aws.md", 
-      output: `# AWS & Azure
-**Nivel:** Intermedio
-**Experiencia:** 2+ años
-**Proyectos:** 8+ deployments
-**Especialidad:** EC2, S3, Lambda, Azure DevOps`, 
-      delay: 2000 
-    },
-    
-    // Clear después de DevOps
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 500 
+      command: "cat devops-overview.md", 
+      output: `# DevOps & Testing
+
+**Experiencia:** 3+ años implementando CI/CD y automatización.
+
+**Logros Destacados:**
+✅ Automatización de procesos con HubSpot y CleverTap
+✅ Despliegue seguro y rápido de nuevas funcionalidades
+✅ Implementación de pruebas unitarias con Karma
+✅ Optimización de microservicios y contenedores
+
+**Tecnologías:** Docker, AWS & Azure, Microservicios, APIs REST, Karma`, 
+      delay: 5000 
     },
     
     // Volver al directorio raíz
@@ -357,36 +208,21 @@ drwxr-xr-x  4 user user 4096 Jan 27 23:00 ..
       delay: 1000 
     },
     
-    // Estado del sistema
+    // Información de contacto
     { 
-      command: "systemctl status portfolio", 
-      output: `● portfolio.service - Portfolio Personal
-     Loaded: loaded (/etc/systemd/system/portfolio.service; enabled)
-     Active: active (running) since Mon 2025-01-27 23:00:00 UTC
-     Main PID: 1234 (node)
-     Status: "Portfolio running successfully"
-     Tasks: 15 (limit: 4915)
-     Memory: 45.2M
-     CGroup: /system.slice/portfolio.service`, 
-      delay: 3000 
-    },
-    
-    // Git log
-    { 
-      command: "git log --oneline -5", 
-      output: `a1b2c3d ✨ Add new portfolio design
-f4e5d6a 🚀 Deploy to production
-g7h8i9j 🐛 Fix terminal animation
-h1i2j3k 📝 Update experience section
-i4j5k6l 🎨 Improve responsive design`, 
-      delay: 3000 
-    },
-    
-    // Clear final y reinicio
-    { 
-      command: "clear", 
-      output: "", 
-      delay: 1000 
+      command: "cat contact.md", 
+      output: `# Contact Information
+
+**Email:** erickandres30@gmail.com
+**GitHub:** github.com/Galaoox
+**LinkedIn:** linkedin.com/in/erick-avn
+
+**Disponible para:**
+• Proyectos freelance
+• Oportunidades full-time
+• Colaboraciones técnicas
+• Consultoría en desarrollo`, 
+      delay: 10000 
     }
   ];
 
@@ -478,6 +314,12 @@ i4j5k6l 🎨 Improve responsive design`,
             
             // Pasar al siguiente comando
             setTimeout(() => {
+              // Ejecutar clear automáticamente después de todos los comandos excepto los de navegación inicial
+              if (!currentCmd.command.startsWith('cd ~/portfolio') && 
+                  !currentCmd.command.startsWith('cd skills')) {
+                clearTerminal();
+              }
+              
               currentCommandIndex++;
               isTypingCommand = true;
               currentCharIndex = 0;
@@ -485,13 +327,8 @@ i4j5k6l 🎨 Improve responsive design`,
             }, currentCmd.delay);
           }, 200);
         } else {
-          // Para comandos como 'clear' o 'cd' sin output
+          // Para comandos como 'cd' sin output
           setTimeout(() => {
-            // Si es el comando clear, limpiar la terminal
-            if (currentCmd.command === 'clear') {
-              clearTerminal();
-            }
-            
             currentCommandIndex++;
             isTypingCommand = true;
             currentCharIndex = 0;
