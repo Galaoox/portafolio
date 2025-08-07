@@ -15,6 +15,11 @@
   --animate-fade-in-up: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Custom utility class for active navigation */
+.text-purple-400 {
+  color: #A78BFA;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
