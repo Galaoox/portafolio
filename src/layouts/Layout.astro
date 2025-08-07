@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import '../styles/animations.css';
+import ParticlesBackground from '../components/ParticlesBackground.astro';
 
 export interface Props {
 	title: string;
@@ -45,6 +46,9 @@ const { title, description = "Portafolio de Erick Vergara, Desarrollador Full St
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
+		<!-- Particles.js -->
+		<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
 		<!-- Import animations -->
 		<!-- <link rel="stylesheet" href="/src/styles/animations.css" /> -->
 
@@ -56,7 +60,11 @@ const { title, description = "Portafolio de Erick Vergara, Desarrollador Full St
 			Saltar al contenido principal
 		</a>
 
-		<slot />
+		<ParticlesBackground />
+
+		<div class="relative z-10">
+			<slot />
+		</div>
 
 		<script>
 			// --- Mobile Menu ---
