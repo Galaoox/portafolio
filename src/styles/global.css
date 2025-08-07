@@ -111,3 +111,42 @@
 #mobile-menu-button.active .hamburger-line:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
 }
+
+/* Terminal icon styles */
+.terminal-icon {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.terminal-icon:hover {
+  transform: scale(1.05);
+}
+
+.terminal-icon::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #7F5AF0, #A78BFA);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.terminal-icon:hover::before {
+  opacity: 0.3;
+}
+
+/* Terminal window glow effect */
+.terminal-window {
+  box-shadow: 0 0 10px rgba(127, 90, 240, 0.2);
+  transition: all 0.3s ease;
+}
+
+.terminal-window:hover {
+  box-shadow: 0 0 20px rgba(127, 90, 240, 0.4);
+  border-color: #7F5AF0;
+}

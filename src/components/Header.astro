@@ -4,7 +4,16 @@
 
 <header id="header" class="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-sm transition-shadow duration-300">
     <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-accent font-mono">EV</a>
+        <a href="#" class="text-2xl font-bold text-accent font-mono flex items-center space-x-2">
+            <div class="relative terminal-icon">
+                <div class="w-8 h-6 sm:w-32 sm:h-8 bg-surface border border-accent/30 rounded-sm flex items-center justify-center terminal-window">
+                    <span class="text-xs text-accent font-bold sm:hidden">EV</span>
+                    <span class="text-xs sm:text-sm text-accent font-bold hidden sm:block">Erick Vergara</span>
+                </div>
+                <div class="absolute -top-1 -right-1 w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                <div class="absolute -bottom-1 -left-1 w-1 h-1 bg-accent/60 rounded-full"></div>
+            </div>
+        </a>
         <div class="hidden md:flex items-center space-x-8">
             <a href="#hero" id="nav-hero" class="nav-link text-gray-300 hover:text-white transition">Inicio</a>
             <a href="#about" id="nav-about" class="nav-link text-gray-300 hover:text-white transition">Sobre mí</a>
