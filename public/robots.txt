@@ -1,3 +1,5 @@
 User-agent: *
 Disallow: /src/assets/
 Allow: /
+
+Sitemap: https://www.erick-avn.xyz/sitemap-index.xml
