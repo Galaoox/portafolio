@@ -25,7 +25,14 @@
             Descargar CV
         </a>
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none relative">
+        <button
+            id="mobile-menu-button"
+            type="button"
+            aria-label="Abrir menú"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            class="md:hidden text-white focus:outline-none relative"
+        >
             <div class="w-6 h-6 flex flex-col justify-center items-center">
                 <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300 transform origin-center"></span>
                 <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300 transform origin-center mt-1"></span>
@@ -38,7 +45,7 @@
 <!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden fixed inset-0 bg-background/95 z-50 md:hidden transition-all duration-300 ease-in-out opacity-0 scale-95">
     <div class="flex justify-end p-6">
-        <button id="close-menu-button" class="text-white hover:text-accent transition-colors duration-200">
+        <button id="close-menu-button" type="button" aria-label="Cerrar menú" class="text-white hover:text-accent transition-colors duration-200">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
