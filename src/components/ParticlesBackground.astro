@@ -57,16 +57,14 @@
 			
 			// Create script element for particles.js
 			const script = document.createElement('script');
-			script.src = 'https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js';
+			script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
 			script.async = true;
 			
 			script.onload = function() {
-				console.log('Particles.js library loaded');
 				initializeParticles();
 			};
 			
 			script.onerror = function() {
-				console.error('Failed to load particles.js library');
 				hideLoadingIndicator();
 			};
 			
@@ -78,16 +76,8 @@
 		function initializeParticles() {
 			// Load particles configuration
 			(window as any).particlesJS.load('particles-js', '/particles-config.json', function() {
-				console.log('Particles.js config loaded');
 				hideLoadingIndicator();
 			});
-			
-			// Ensure interactivity is working
-			setTimeout(() => {
-				if ((window as any).pJSDom && (window as any).pJSDom[0]) {
-					console.log('Particles interactivity enabled');
-				}
-			}, 1000);
 		}
 		
 		// Function to hide loading indicator
