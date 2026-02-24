@@ -1,24 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import Skills from '../components/Skills.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import SystemTopBar from '../components/SystemTopBar.astro';
+import HeroNeo from '../components/HeroNeo.astro';
+import TechStackNeo from '../components/TechStackNeo.astro';
+import ExperienceNeo from '../components/ExperienceNeo.astro';
+import EducationNeo from '../components/EducationNeo.astro';
+import FooterNeo from '../components/FooterNeo.astro';
 ---
 
 <Layout title="Erick Vergara - Desarrollador Full Stack | Portafolio">
-	<Header />
-	
-	<main id="main" class="container mx-auto px-6">
-		<Hero />
-		<About />
-		<Experience />
-		<Skills />
-		<Contact />
+	<div class="scanlines" aria-hidden="true"></div>
+	<SystemTopBar />
+
+	<main id="main" class="container mx-auto px-4 pt-20 pb-20 max-w-7xl">
+		<HeroNeo />
+		<TechStackNeo />
+		<ExperienceNeo />
+		<EducationNeo />
+		<FooterNeo />
 	</main>
-	
-	<Footer />
+
+	<div class="fixed top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
+	<div class="fixed top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
+	<div class="fixed bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
+	<div class="fixed bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
 </Layout>

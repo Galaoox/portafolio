@@ -1,0 +1,30 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { education } = portfolioData;
+const icons = ['school', 'code', 'settings_ethernet'];
+---
+
+<section class="neo-border bg-[#0a0a0a] p-8 mb-20 relative" id="education">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[var(--primary-bg)] px-4 text-[var(--accent-purple)] font-bold text-lg tracking-widest border border-[var(--border-color)]">
+    ACADEMIC_DATA
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+    {education.map((item, index) => (
+      <article class="p-4 border border-[#222] bg-[#0e0e0e]">
+        <span class="text-3xl text-[var(--border-color)] mb-2 block material-symbols-outlined">
+          {icons[index] ?? 'school'}
+        </span>
+        <h3 class="text-white font-bold mb-1">{item.degree}</h3>
+        <p class="text-xs text-[var(--text-muted)] mb-2">{item.institution}</p>
+        <span class:list={[
+          'text-xs font-mono',
+          index === 0 ? 'text-[var(--accent-purple)]' : 'text-[#888]',
+        ]}>
+          {item.period}
+        </span>
+      </article>
+    ))}
+  </div>
+</section>

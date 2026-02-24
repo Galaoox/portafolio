@@ -1,173 +1,78 @@
 ---
-// Layout component with metadata and styling
-import ParticlesBackground from '../components/ParticlesBackground.astro';
 import '../styles/global.css';
 import '../styles/animations.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Erick Vergara - Desarrollador Full Stack | Portafolio',
+  description = 'Portafolio de Erick Vergara, Full Stack con experiencia en React, Angular, .NET Core y Python.',
+} = Astro.props;
+
+const canonicalUrl = Astro.url.href;
 ---
 
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<!-- Canonical URL -->
-		<link rel="canonical" href={Astro.url.href} />
-		
-		<!-- Primary Meta Tags -->
-		<title>Erick Vergara - Desarrollador Full Stack | Portafolio</title>
-		<meta name="title" content="Erick Vergara - Desarrollador Full Stack | Portafolio" />
-		<meta name="description" content="Portafolio de Erick Vergara, Full Stack con experiencia en React, Angular, .NET Core y Python. Soluciones escalables." />
-		<meta name="keywords" content="desarrollador full stack, react, angular, .net core, python, portafolio, colombia" />
-		<meta name="author" content="Erick Vergara" />
-		<meta name="robots" content="index, follow" />
-		<meta name="language" content="Spanish" />
-		<meta name="revisit-after" content="7 days" />
-		<meta name="distribution" content="global" />
-		<meta name="rating" content="general" />
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://www.erick-avn.xyz/" />
-		<meta property="og:title" content="Erick Vergara - Desarrollador Full Stack | Portafolio" />
-		<meta property="og:description" content="Portafolio de Erick Vergara, Desarrollador Full Stack con experiencia en React, Angular, .NET Core, y Python." />
-		<meta property="og:image" content="https://www.erick-avn.xyz/photo.webp" />
-		<meta property="og:site_name" content="Erick Vergara Portfolio" />
-		<meta property="og:locale" content="es_ES" />
+    <link rel="canonical" href={canonicalUrl} />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://www.erick-avn.xyz/" />
-		<meta property="twitter:title" content="Erick Vergara - Desarrollador Full Stack | Portafolio" />
-		<meta property="twitter:description" content="Portafolio de Erick Vergara, Desarrollador Full Stack con experiencia en React, Angular, .NET Core, y Python." />
-		<meta property="twitter:image" content="https://www.erick-avn.xyz/photo.webp" />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="desarrollador full stack, react, angular, .net core, python, portafolio, colombia"
+    />
+    <meta name="author" content="Erick Vergara" />
+    <meta name="robots" content="index, follow" />
 
-		<!-- Google tag (gtag.js) -->
-		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-QWE1S2BG2R"></script>
-		<script type="text/partytown">
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-QWE1S2BG2R');
-		</script>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://www.erick-avn.xyz/photo.webp" />
+    <meta property="og:site_name" content="Erick Vergara Portfolio" />
+    <meta property="og:locale" content="es_ES" />
 
-		<!-- Google Fonts Preconnect -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-		<noscript>
-			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-		</noscript>
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://www.erick-avn.xyz/photo.webp" />
 
-	</head>
-	<body class="bg-background text-white font-sans antialiased">
-		<!-- Accessibility Skip Link -->
-		<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded-lg focus:bg-accent focus:px-4 focus:py-3">
-			Saltar al contenido principal
-		</a>
+    <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-QWE1S2BG2R"></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QWE1S2BG2R');
+    </script>
 
-		<ParticlesBackground />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Space+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen relative overflow-x-hidden antialiased selection:bg-[var(--accent-purple)] selection:text-white">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded-lg focus:bg-[var(--accent-purple)] focus:px-4 focus:py-3 focus:text-white"
+    >
+      Saltar al contenido principal
+    </a>
 
-		<div class="relative z-10">
-			<slot />
-		</div>
-
-		<!-- Mobile Menu JavaScript -->
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				const mobileMenuButton = document.getElementById('mobile-menu-button');
-				const mobileMenu = document.getElementById('mobile-menu');
-				const closeMenuButton = document.getElementById('close-menu-button');
-				const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-				// Check if elements exist before adding event listeners
-				if (!mobileMenuButton || !mobileMenu || !closeMenuButton) {
-					console.warn('Mobile menu elements not found');
-					return;
-				}
-
-				// Open mobile menu
-				mobileMenuButton.addEventListener('click', function() {
-					mobileMenu!.classList.remove('hidden');
-					mobileMenuButton!.classList.add('active');
-					mobileMenuButton.setAttribute('aria-expanded', 'true');
-					// Trigger animation after a small delay to ensure display change
-					setTimeout(() => {
-						mobileMenu!.classList.remove('opacity-0', 'scale-95');
-						mobileMenu!.classList.add('opacity-100', 'scale-100');
-						closeMenuButton.focus();
-					}, 10);
-					document.body.style.overflow = 'hidden'; // Prevent background scrolling
-				});
-
-				// Close mobile menu
-				function closeMobileMenu() {
-					mobileMenu!.classList.remove('opacity-100', 'scale-100');
-					mobileMenu!.classList.add('opacity-0', 'scale-95');
-					mobileMenuButton!.classList.remove('active');
-					mobileMenuButton.setAttribute('aria-expanded', 'false');
-					
-					// Hide menu after animation completes
-					setTimeout(() => {
-						mobileMenu!.classList.add('hidden');
-						mobileMenuButton.focus();
-					}, 300);
-					
-					document.body.style.overflow = ''; // Restore scrolling
-				}
-
-				closeMenuButton.addEventListener('click', closeMobileMenu);
-
-				// Close menu when clicking on a nav link
-				mobileNavLinks.forEach(link => {
-					link.addEventListener('click', closeMobileMenu);
-				});
-
-				// Close menu when clicking outside
-				mobileMenu.addEventListener('click', function(e) {
-					if (e.target === mobileMenu) {
-						closeMobileMenu();
-					}
-				});
-
-				// Close menu on escape key
-				document.addEventListener('keydown', function(e) {
-					if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('hidden')) {
-						closeMobileMenu();
-					}
-				});
-			});
-			</script>
-
-			<!-- Section fade-in observer -->
-			<script>
-				document.addEventListener('DOMContentLoaded', function() {
-					const fadeInSections = document.querySelectorAll('section.fade-in-section');
-
-					if (fadeInSections.length === 0) {
-						return;
-					}
-
-					if (!('IntersectionObserver' in window)) {
-						fadeInSections.forEach((section) => section.classList.add('is-visible'));
-						return;
-					}
-
-					const observer = new IntersectionObserver(
-						(entries, sectionObserver) => {
-							entries.forEach((entry) => {
-								if (entry.isIntersecting) {
-									entry.target.classList.add('is-visible');
-									sectionObserver.unobserve(entry.target);
-								}
-							});
-						},
-						{ threshold: 0.15, rootMargin: '0px 0px -5% 0px' }
-					);
-
-					fadeInSections.forEach((section) => observer.observe(section));
-				});
-			</script>
-		</body>
+    <div class="relative z-10">
+      <slot />
+    </div>
+  </body>
 </html>

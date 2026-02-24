@@ -1,0 +1,73 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { personal, keyHighlights } = portfolioData;
+---
+
+<header class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+  <div class="lg:col-span-8 neo-border bg-[var(--secondary-bg)] p-8 md:p-12 relative overflow-hidden">
+    <div class="absolute top-4 right-4 text-xs text-[#444] font-mono">
+      SECTOR: FULL_STACK<br />
+      UNIT: D-01
+    </div>
+
+    <div class="mb-4 inline-block bg-[var(--accent-purple)] text-white px-3 py-1 font-bold text-sm tracking-wider status-badge">
+      STATUS: OPERATIONAL
+    </div>
+
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4 text-white leading-none glitch-text cursor-default">
+      {personal.firstName}<br />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-[var(--accent-purple)]/50">{personal.lastName}</span>
+    </h1>
+
+    <h2 class="text-xl md:text-2xl text-[var(--accent-purple)] font-mono mb-6 flex items-center gap-2 uppercase">
+      <span class="material-symbols-outlined text-sm">terminal</span>
+      {personal.role}
+    </h2>
+
+    <p class="text-gray-400 max-w-2xl text-sm md:text-base leading-relaxed border-l-2 border-[var(--border-color)] pl-4">
+      {personal.summary}
+    </p>
+
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a class="bg-white text-black hover:bg-[var(--accent-purple)] hover:text-white transition-colors px-6 py-3 font-bold uppercase tracking-widest text-sm flex items-center gap-2" href={`mailto:${personal.email}`}>
+        <span class="material-symbols-outlined">mail</span>
+        Contacto
+      </a>
+      <a class="border border-[var(--border-color)] px-6 py-3 text-[var(--text-muted)] font-mono text-sm hover:border-[var(--accent-purple)] hover:text-white transition-colors" href={personal.github} target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
+      <a class="border border-[var(--border-color)] px-6 py-3 text-[var(--text-muted)] font-mono text-sm hover:border-[var(--accent-purple)] hover:text-white transition-colors" href={personal.linkedin} target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="absolute bottom-4 right-4 flex gap-1 opacity-50">
+      <div class="w-2 h-2 bg-[var(--accent-purple)]"></div>
+      <div class="w-2 h-2 bg-[var(--border-color)]"></div>
+      <div class="w-2 h-2 bg-[var(--border-color)]"></div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-4 flex flex-col gap-6">
+    <div class="bg-[var(--secondary-bg)] border border-[var(--border-color)] p-6 flex-1 relative">
+      <h3 class="text-xs tracking-[0.2em] text-[var(--text-muted)] mb-4 border-b border-[var(--border-color)] pb-2">KEY_HIGHLIGHTS</h3>
+      <p class="text-xs text-[#aaa] mb-4 uppercase">Impacto medible.</p>
+      <div class="space-y-3">
+        {keyHighlights.map((highlight) => (
+          <article class="bg-[var(--primary-bg)] border border-[var(--border-color)] p-3">
+            <p class="text-[var(--accent-purple)] text-sm font-bold tracking-widest mb-1">{highlight.metric}</p>
+            <p class="text-xs text-[#bbb] font-mono">{highlight.summary}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-[var(--accent-purple)] p-6 text-white relative overflow-hidden">
+      <div class="absolute inset-0 dot-matrix opacity-20"></div>
+      <h3 class="font-bold text-2xl mb-2 relative z-10">OPEN TO WORK</h3>
+      <p class="text-sm font-mono relative z-10 font-bold opacity-90 uppercase">{personal.openToWork}</p>
+      <span class="material-symbols-outlined absolute -bottom-4 -right-4 text-8xl opacity-20 rotate-12 text-white">rocket_launch</span>
+    </div>
+  </div>
+</header>
