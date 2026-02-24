@@ -1,0 +1,252 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { experiences } = portfolioData;
+const MAX_VISIBLE_ITEMS = 4;
+
+const timelineLabels = experiences.map((item, index) => {
+  if (index === 0 || item.current) {
+    return '● CURRENT';
+  }
+
+  const years = item.period.match(/\d{4}/g) ?? [];
+  if (years.length >= 2) {
+    return `○ ${years[0]} - ${years[1]}`;
+  }
+
+  if (years.length === 1) {
+    return `○ ${years[0]}`;
+  }
+
+  return '○ HISTORY';
+});
+---
+
+<section class="mb-20 grid grid-cols-1 lg:grid-cols-12 gap-8" id="experience">
+  <div class="lg:col-span-3">
+    <div class="sticky top-24">
+      <h2 class="text-3xl font-bold text-white mb-2">SYSTEM<br />LOGS</h2>
+      <p class="text-[var(--text-muted)] text-sm font-mono mb-8">// PROFESSIONAL_HISTORY</p>
+
+      <div class="hidden lg:block border-l border-[var(--border-color)] pl-4 ml-2 space-y-4">
+        {timelineLabels.map((label, idx) => (
+          <div class:list={['text-xs', idx === 0 ? 'text-[var(--accent-purple)]' : 'text-[#444]']}>{label}</div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:col-span-9 space-y-8">
+    {experiences.map((experience, index) => {
+      const defaultTab = experience.defaultTab ?? 'achievements';
+      const functionsTabId = `tab-${index}-functions`;
+      const achievementsTabId = `tab-${index}-achievements`;
+      const functionsPanelId = `panel-${index}-functions`;
+      const achievementsPanelId = `panel-${index}-achievements`;
+      const hasFunctionsOverflow = experience.keyFunctions.length > MAX_VISIBLE_ITEMS;
+      const hasAchievementsOverflow = experience.keyAchievements.length > MAX_VISIBLE_ITEMS;
+
+      return (
+        <article
+          class:list={[
+            'bg-[var(--secondary-bg)] p-6 relative transition-colors',
+            index === 0
+              ? 'border-l-2 border-[var(--accent-purple)]'
+              : 'border-l-2 border-[var(--border-color)] hover:border-white',
+          ]}
+          data-exp-card
+        >
+          <div
+            class:list={[
+              'absolute -left-[9px] top-6 w-4 h-4 rounded-full border-4 border-[var(--secondary-bg)]',
+              index === 0 ? 'bg-[var(--accent-purple)] shadow-[0_0_10px_var(--accent-purple)]' : 'bg-[var(--border-color)]',
+            ]}
+          ></div>
+
+          <header class="flex flex-col md:flex-row md:items-center justify-between mb-4 border-b border-[#222] pb-4">
+            <div>
+              <h3 class="text-xl font-bold text-white uppercase">{experience.company}</h3>
+              <span class:list={['font-mono text-sm', index === 0 ? 'text-[var(--accent-purple)]' : 'text-gray-500']}>
+                {experience.role}
+              </span>
+              {experience.location && (
+                <p class="text-xs text-[var(--text-muted)] font-mono mt-1 uppercase">{experience.location}</p>
+              )}
+            </div>
+            <div class="mt-2 md:mt-0 font-mono text-xs text-[var(--text-muted)] bg-[var(--primary-bg)] px-2 py-1 border border-[var(--border-color)] uppercase">
+              [ {experience.period} ]
+            </div>
+          </header>
+
+          <div
+            class="grid grid-cols-2 gap-2 mb-4"
+            role="tablist"
+            aria-label={`Detalles de ${experience.company}`}
+          >
+            <button
+              id={achievementsTabId}
+              type="button"
+              role="tab"
+              aria-controls={achievementsPanelId}
+              aria-selected={defaultTab === 'achievements'}
+              tabindex={defaultTab === 'achievements' ? 0 : -1}
+              class="exp-tab border border-[var(--border-color)] bg-[var(--primary-bg)] px-3 py-2 text-[10px] md:text-xs tracking-widest text-[var(--text-muted)] font-mono uppercase transition-colors"
+            >
+              Logros destacados
+            </button>
+
+            <button
+              id={functionsTabId}
+              type="button"
+              role="tab"
+              aria-controls={functionsPanelId}
+              aria-selected={defaultTab === 'functions'}
+              tabindex={defaultTab === 'functions' ? 0 : -1}
+              class="exp-tab border border-[var(--border-color)] bg-[var(--primary-bg)] px-3 py-2 text-[10px] md:text-xs tracking-widest text-[var(--text-muted)] font-mono uppercase transition-colors"
+            >
+              Funciones clave
+            </button>
+          </div>
+
+          <section
+            id={functionsPanelId}
+            role="tabpanel"
+            aria-labelledby={functionsTabId}
+            class="exp-tab-panel"
+            hidden={defaultTab !== 'functions'}
+          >
+            <ul class="space-y-2 text-sm text-[#b9b9b9] font-mono">
+              {experience.keyFunctions.map((item, itemIndex) => (
+                <li class:list={['flex items-start gap-2', itemIndex >= MAX_VISIBLE_ITEMS && 'exp-extra hidden']}>
+                  <span class="w-1.5 h-1.5 bg-[var(--border-color)] mt-1.5 shrink-0"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            {hasFunctionsOverflow && (
+              <button
+                type="button"
+                class="exp-toggle mt-3 text-[10px] md:text-xs uppercase tracking-[0.16em] text-[var(--accent-purple)] border border-[var(--border-color)] px-3 py-2 hover:border-[var(--accent-purple)] hover:text-white transition-colors"
+                data-toggle-items
+                data-target-panel={functionsPanelId}
+                aria-expanded="false"
+              >
+                VER MAS
+              </button>
+            )}
+          </section>
+
+          <section
+            id={achievementsPanelId}
+            role="tabpanel"
+            aria-labelledby={achievementsTabId}
+            class="exp-tab-panel"
+            hidden={defaultTab !== 'achievements'}
+          >
+            <ul class="space-y-2 text-sm text-[#d1d1d1] font-mono">
+              {experience.keyAchievements.map((item, itemIndex) => (
+                <li class:list={['flex items-start gap-2', itemIndex >= MAX_VISIBLE_ITEMS && 'exp-extra hidden']}>
+                  <span class="w-1.5 h-1.5 bg-[var(--accent-purple)] shadow-[0_0_4px_var(--accent-purple)] mt-1.5 shrink-0"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            {hasAchievementsOverflow && (
+              <button
+                type="button"
+                class="exp-toggle mt-3 text-[10px] md:text-xs uppercase tracking-[0.16em] text-[var(--accent-purple)] border border-[var(--border-color)] px-3 py-2 hover:border-[var(--accent-purple)] hover:text-white transition-colors"
+                data-toggle-items
+                data-target-panel={achievementsPanelId}
+                aria-expanded="false"
+              >
+                VER MAS
+              </button>
+            )}
+          </section>
+        </article>
+      );
+    })}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('[data-exp-card]');
+
+    cards.forEach((card) => {
+      const tabs = card.querySelectorAll('[role="tab"]');
+      const panels = card.querySelectorAll('[role="tabpanel"]');
+      const toggleButtons = card.querySelectorAll('[data-toggle-items]');
+
+      const activateTab = (nextTab) => {
+        const panelId = nextTab.getAttribute('aria-controls');
+        if (!panelId) {
+          return;
+        }
+
+        tabs.forEach((tab) => {
+          const isSelected = tab === nextTab;
+          tab.setAttribute('aria-selected', String(isSelected));
+          tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== panelId;
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            activateTab(tab);
+          }
+        });
+      });
+
+      toggleButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const panelId = button.getAttribute('data-target-panel');
+          if (!panelId) {
+            return;
+          }
+
+          const panel = card.querySelector(`#${panelId}`);
+          if (!panel) {
+            return;
+          }
+
+          const extraItems = panel.querySelectorAll('.exp-extra');
+          if (!extraItems.length) {
+            return;
+          }
+
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          const nextExpanded = !expanded;
+
+          extraItems.forEach((item) => {
+            item.classList.toggle('hidden', !nextExpanded);
+          });
+
+          button.setAttribute('aria-expanded', String(nextExpanded));
+          button.textContent = nextExpanded ? 'VER MENOS' : 'VER MAS';
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  .exp-tab[aria-selected='true'] {
+    border-color: var(--accent-purple);
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(127, 90, 240, 0.2);
+  }
+
+  .exp-tab-panel[hidden] {
+    display: none;
+  }
+</style>
