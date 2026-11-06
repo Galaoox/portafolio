@@ -1,225 +1,243 @@
-export type SkillGroup = {
-  name: string;
-  icon: string;
-  items: string[];
-};
-
-export type KeyHighlight = {
-  metric: string;
+type Project = {
+  shortTitle: string;
+  title: string;
+  context: string;
   summary: string;
+  details: string[];
+  outcome: string;
+  technologies: string;
 };
 
-export type ExperienceItem = {
+type Experience = {
   company: string;
   role: string;
   period: string;
-  location?: string;
-  keyFunctions: string[];
-  keyAchievements: string[];
-  current?: boolean;
-  defaultTab?: 'functions' | 'achievements';
+  summary: string;
+  details: string[];
+  technologies: { area: string; items: string }[];
+  current: boolean;
+  project?: Project;
 };
 
-export type EducationItem = {
-  degree: string;
-  institution: string;
-  period: string;
-};
-
-export type PortfolioData = {
+type PortfolioData = {
   personal: {
-    firstName: string;
-    lastName: string;
-    fullName: string;
+    name: string;
     role: string;
-    email: string;
+    intro: string;
+    current: string;
+    location: string;
     github: string;
     linkedin: string;
-    summary: string;
-    openToWork: string;
   };
-  keyHighlights: KeyHighlight[];
-  skills: SkillGroup[];
-  experiences: ExperienceItem[];
-  education: EducationItem[];
+  contact: { title: string; text: string };
+  institution: string;
+  skills: { name: string; items: string }[];
+  education: { degree: string; period: string }[];
+  experiences: Experience[];
 };
 
 export const portfolioData: PortfolioData = {
-  personal: {
-    firstName: 'Erick',
-    lastName: 'Vergara',
-    fullName: 'Erick Andres Vergara Noriega',
-    role: 'Desarrollador Full Stack',
-    email: 'erickandres30@gmail.com',
-    github: 'https://github.com/Galaoox',
-    linkedin: 'https://www.linkedin.com/in/erick-avn/',
-    summary:
-      'Desarrollador Full Stack con experiencia en React, Angular, .NET Core, Node.js y Python. Enfocado en crear soluciones escalables, optimizar el rendimiento de sistemas y desarrollar arquitecturas eficientes.',
-    openToWork: 'Disponible para nuevos retos y despliegues.',
+  "personal": {
+    "name": "Erick Vergara",
+    "role": "Desarrollador Full Stack Senior",
+    "intro": "Desarrollo aplicaciones web, servicios e integraciones de datos. Trabajo con React, Angular, .NET y Python, desde la interfaz hasta el procesamiento y la persistencia.",
+    "current": "Actualmente en CINTE Colombia",
+    "location": "Colombia",
+    "github": "https://github.com/Galaoox",
+    "linkedin": "https://www.linkedin.com/in/erick-avn/"
   },
-  keyHighlights: [
+  "experiences": [
     {
-      metric: '+60%',
-      summary: 'Aceleracion en tiempos de procesamiento de datos.',
+      "company": "CINTE Colombia",
+      "role": "Desarrollador Fullstack Senior",
+      "period": "Mayo 2026 — actual",
+      "summary": "Microservicios, procesamiento de datos e interfaces conectadas al backend.",
+      "details": [
+        "Desarrollo con Python / FastAPI y C# / .NET, contenedores Docker y flujos de archivos en Google Cloud Storage.",
+        "Vistas en Angular 19, consultas Oracle / PL/SQL y pipelines de limpieza, validación y calidad de datos."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": "C# / .NET · Python / FastAPI · SQLAlchemy · Angular 19"
+        },
+        {
+          "area": "Datos",
+          "items": "Oracle / PL/SQL · pandas · Polars"
+        },
+        {
+          "area": "Infraestructura",
+          "items": "GCP / Google Cloud Storage · Docker"
+        }
+      ],
+      "current": true
     },
     {
-      metric: '-40%',
-      summary: 'Reduccion de consumo de recursos en microservicios criticos.',
+      "company": "Periferia IT Group",
+      "role": "Desarrollador Fullstack",
+      "period": "Abril 2025 — mayo 2026",
+      "summary": "Integración entre filiales, carga masiva y optimización de recursos.",
+      "details": [
+        "Desarrollo de microservicios de procesamiento masivo con Python, FastAPI y .NET.",
+        "Integración de archivos en GCP, carga en Oracle y desarrollo de vistas en Angular 19."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": "C# / .NET · Python / FastAPI · SQLAlchemy · Angular 19"
+        },
+        {
+          "area": "Datos",
+          "items": "Oracle / PL/SQL · pandas → Polars"
+        },
+        {
+          "area": "Infraestructura",
+          "items": "GCP / Google Cloud Storage · Docker"
+        }
+      ],
+      "current": false,
+      "project": {
+        "shortTitle": "Órdenes de compra entre filiales",
+        "title": "Desarrollo de un sistema de integración y procesamiento masivo de órdenes de compra entre filiales",
+        "context": "Retail de materiales de construcción · Cliente confidencial · A través de Periferia IT Group",
+        "summary": "Desarrollo individual de un sistema de aproximadamente diez microservicios. Cada uno procesaba un archivo CSV diferente, con tratamientos específicos, desde su recepción en GCP hasta su carga en Oracle.",
+        "details": [
+          "Sustituí pandas por Polars por su mejor comportamiento de memoria en este flujo.",
+          "Reemplacé la carga mediante el ORM por un mecanismo de inserción masiva en Oracle.",
+          "Realicé pruebas incrementales en contenedores con memoria limitada para dimensionar memoria y CPU y ajustar el paralelismo frente a reinicios por agotamiento de memoria."
+        ],
+        "outcome": "Resultados aproximados: mejora del 60% en procesamiento y reducción del 40% en consumo de recursos.",
+        "technologies": "Python · Polars · GCP · Oracle · Docker"
+      }
     },
     {
-      metric: '3.0s → 2.1s',
-      summary: 'Mejora de tiempos de carga (Core Web Vitals).',
+      "company": "R5",
+      "role": "Desarrollador Fullstack",
+      "period": "Enero 2023 — marzo 2025",
+      "summary": "Aplicaciones web, funnels e integración de plataformas de marketing y datos.",
+      "details": [
+        "Desarrollo con React, Python y FastAPI; integración de APIs y herramientas de seguimiento.",
+        "Automatización con HubSpot, CleverTap y Redshift; mejora de tiempos de carga de 3,0 s a 2,1 s."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": "React · Python / FastAPI"
+        },
+        {
+          "area": "Datos",
+          "items": "Redshift · Metabase"
+        },
+        {
+          "area": "Integraciones",
+          "items": "HubSpot · CleverTap · Google Analytics · Meta Ads · TikTok Ads"
+        }
+      ],
+      "current": false
     },
     {
-      metric: '-83%',
-      summary: 'Reduccion de tiempos de consulta en SQL Server.',
+      "company": "MVM Ingeniería de Software",
+      "role": "Analista de software",
+      "period": "Julio 2021 — enero 2023",
+      "summary": "Desarrollo Full Stack para el sector energético colombiano.",
+      "details": [
+        "Módulos con Angular, TypeScript, .NET Core y SQL Server.",
+        "Microservicios, interfaces con Syncfusion y pruebas unitarias con Karma."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": "Angular · TypeScript · .NET Core"
+        },
+        {
+          "area": "Datos",
+          "items": "SQL Server"
+        },
+        {
+          "area": "Interfaz y pruebas",
+          "items": "Syncfusion · Karma"
+        }
+      ],
+      "current": false
     },
+    {
+      "company": "Logical Software Factory",
+      "role": "Desarrollador de software",
+      "period": "Enero 2021 — julio 2021",
+      "summary": "Soluciones para el sector asegurador y modernización de sistemas legacy.",
+      "details": [
+        "Desarrollo y mantenimiento con .NET, ASP.NET, React y SQL Server.",
+        "Optimización de procedimientos almacenados con una reducción del 83% en tiempos de consulta."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": ".NET · ASP.NET · React"
+        },
+        {
+          "area": "Datos",
+          "items": "SQL Server"
+        }
+      ],
+      "current": false
+    },
+    {
+      "company": "Tecnologías Sinergia S.A.S",
+      "role": "Desarrollador de software",
+      "period": "Junio 2019 — enero 2021",
+      "summary": "Desarrollo de ERP e interfaces responsivas.",
+      "details": [
+        "Desarrollo de un ERP con Angular y Laravel.",
+        "Interfaces responsivas con Bootstrap y TypeScript; mejoras de flujos y rendimiento."
+      ],
+      "technologies": [
+        {
+          "area": "Desarrollo",
+          "items": "Angular · TypeScript · Laravel"
+        },
+        {
+          "area": "Interfaz",
+          "items": "Bootstrap"
+        }
+      ],
+      "current": false
+    }
   ],
-  skills: [
+  "skills": [
     {
-      name: 'Frontend',
-      icon: 'html',
-      items: ['React', 'Angular', 'TypeScript', 'JavaScript', 'UI Syncfusion'],
+      "name": "Frontend",
+      "items": "React, Angular, TypeScript, JavaScript, Syncfusion"
     },
     {
-      name: 'Backend',
-      icon: 'dns',
-      items: [
-        'Node.js / Express',
-        'Python (FastAPI)',
-        'C# .NET Core',
-        'Laravel / PHP',
-      ],
+      "name": "Backend",
+      "items": "Python / FastAPI, C# / .NET, Node.js / Express, Laravel / PHP"
     },
     {
-      name: 'Bases de Datos',
-      icon: 'database',
-      items: ['MySQL', 'PostgreSQL', 'SQL Server', 'Redshift', 'Metabase'],
+      "name": "Datos",
+      "items": "Oracle / PL/SQL, SQL Server, PostgreSQL, MySQL, Redshift, Polars, Metabase"
     },
     {
-      name: 'Testing & DevOps',
-      icon: 'cloud',
-      items: ['Karma', 'Docker', 'Azure / AWS', 'Microservicios', 'APIs REST'],
-    },
+      "name": "Infraestructura y calidad",
+      "items": "Docker, GCP, Azure, AWS, APIs REST, microservicios, Karma"
+    }
   ],
-  experiences: [
+  "education": [
     {
-      company: 'Periferia IT Group',
-      role: 'Desarrollador Full Stack',
-      period: 'Abril 2025 - Actual',
-      location: 'Colombia',
-      current: true,
-      defaultTab: 'achievements',
-      keyFunctions: [
-        'Diseno e implementacion de microservicios de procesamiento masivo con Python (FastAPI) y C# / .NET 6-8, contenedorizados con Docker.',
-        'Integracion de flujos de ingesta y distribucion de archivos mediante Google Cloud Storage.',
-        'Desarrollo de vistas y pantallas en Angular 19.',
-        'Modelado y optimizacion de consultas en Oracle (PL/SQL) para cargas batch y procesos near-real-time.',
-        'Implementacion de pipelines de limpieza, validacion y Data Quality.',
-      ],
-      keyAchievements: [
-        'Aceleracion de tiempos de procesamiento en ~60% usando pandas y polars.',
-        'Optimizacion de consumo de recursos en ~40% en microservicios criticos.',
-        'Reduccion de retrabajos y errores mediante automatizacion de validaciones.',
-        'APIs REST de alto rendimiento para operaciones masivas.',
-        'Documentacion tecnica y handoff para mantenimiento y escalamiento.',
-      ],
+      "degree": "Ingeniería de Software",
+      "period": "2018 — 2023"
     },
     {
-      company: 'R5',
-      role: 'Desarrollador Full Stack',
-      period: 'Enero 2023 - Marzo 2025',
-      location: 'Colombia',
-      defaultTab: 'achievements',
-      keyFunctions: [
-        'Desarrollo Full Stack con React, Python y FastAPI.',
-        'Diseno e implementacion de funnels.',
-        'Integracion de APIs y herramientas de seguimiento.',
-        'Refactorizacion y optimizacion del codigo.',
-        'Automatizacion con HubSpot, CleverTap y Redshift.',
-      ],
-      keyAchievements: [
-        'Mejora del 30% en interaccion de usuarios.',
-        'Reduccion de tiempos de carga de 3s a 2.1s (Core Web Vitals).',
-        'Reduccion del 20% en deuda tecnica.',
-        'Migracion CRM de HubSpot a CleverTap con modelos en Redshift.',
-        'Microservicios con Python/FastAPI integrando Google Analytics, Meta Ads y TikTok Ads.',
-        'Cambios de marca en UI/UX.',
-        'Despliegue rapido y seguro de funcionalidades.',
-      ],
+      "degree": "Tecnólogo en Desarrollo de Sistemas de Información y Redes",
+      "period": "2020 — 2021"
     },
     {
-      company: 'MVM Ingenieria de Software',
-      role: 'Analista de Software',
-      period: 'Julio 2021 - Enero 2023',
-      location: 'Colombia',
-      defaultTab: 'achievements',
-      keyFunctions: [
-        'Desarrollo Full Stack para sector energetico (Angular, TypeScript, .NET Core, SQL Server).',
-        'Implementacion de microservicios.',
-        'Optimizacion de UX.',
-        'Integracion de herramientas y pruebas automatizadas.',
-        'Refactorizacion y optimizacion de codigo.',
-      ],
-      keyAchievements: [
-        'Reduccion del 20% en tiempos de procesamiento.',
-        'Mejora de estabilidad y mantenibilidad con pruebas unitarias (Karma).',
-        'Optimizacion de UX con UI Syncfusion.',
-        'Arquitecturas escalables y modulares.',
-      ],
-    },
-    {
-      company: 'Logical Software Factory',
-      role: 'Desarrollador de Software',
-      period: 'Enero 2021 - Julio 2021',
-      location: 'Colombia',
-      defaultTab: 'achievements',
-      keyFunctions: [
-        'Soluciones para sector asegurador con .NET, ASP.NET, React y SQL Server.',
-        'Optimizacion y modernizacion de sistemas legacy.',
-        'Refactorizacion y optimizacion del codigo.',
-        'Optimizacion de bases de datos y procedimientos almacenados.',
-      ],
-      keyAchievements: [
-        'Reduccion del 83% en tiempos de consulta en SQL Server.',
-        'Mejora de rendimiento y compatibilidad de sistemas legacy.',
-        'Implementacion de arquitecturas escalables.',
-      ],
-    },
-    {
-      company: 'Tecnologias Sinergia S.A.S',
-      role: 'Desarrollador de Software',
-      period: 'Junio 2019 - Enero 2021',
-      location: 'Huila, Colombia',
-      defaultTab: 'achievements',
-      keyFunctions: [
-        'Desarrollo de ERP con Angular y Laravel.',
-        'Interfaces responsivas con Bootstrap y TypeScript.',
-        'Mejores practicas frontend y backend.',
-        'Optimizacion de experiencia de usuario.',
-      ],
-      keyAchievements: [
-        'Mejora de eficiencia operativa del ERP.',
-        'Interfaces accesibles y responsivas.',
-        'Optimizacion del rendimiento del sistema.',
-      ],
-    },
+      "degree": "Técnico Profesional en Soporte de Sistemas Informáticos y Redes",
+      "period": "2018 — 2020"
+    }
   ],
-  education: [
-    {
-      degree: 'Ingenieria de Software',
-      institution: 'Fundacion Escuela Tecnologica de Neiva',
-      period: '2018 - 2023',
-    },
-    {
-      degree: 'Tecnologo en Desarrollo de Sistemas de Informacion y Redes',
-      institution: 'Fundacion Escuela Tecnologica de Neiva',
-      period: 'Febrero 2020 - Enero 2021',
-    },
-    {
-      degree: 'Tecnico Profesional en Soporte de Sistemas Informaticos y Redes',
-      institution: 'Fundacion Escuela Tecnologica de Neiva',
-      period: 'Febrero 2018 - Junio 2020',
-    },
-  ],
+  "institution": "Fundación Escuela Tecnológica de Neiva",
+  "contact": {
+    "title": "Hablemos.",
+    "text": "Puedes contactarme por LinkedIn."
+  }
 };

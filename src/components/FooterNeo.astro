@@ -1,14 +1,22 @@
 ---
-const year = new Date().getFullYear();
+import { portfolioData } from '../data/portfolio';
+
+const { personal, contact } = portfolioData;
 ---
 
-<footer class="border-t border-[var(--border-color)] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[#555] font-mono uppercase tracking-widest pb-6">
-  <div>
-    © {year} Erick Vergara // Designed for high output
+<footer class="contact wrap" id="contacto" aria-labelledby="contact-heading">
+  <div class="contact-grid">
+    <h2 id="contact-heading">{contact.title}</h2>
+    <div>
+      <p>{contact.text}</p>
+      <a class="contact-primary" href={personal.linkedin}>Escríbeme por LinkedIn</a>
+      <div class="contact-links">
+        <a href={personal.github}>GitHub</a>
+      </div>
+    </div>
   </div>
-  <div class="flex gap-4 mt-4 md:mt-0">
-    <span>Unit / D-01</span>
-    <span>Status: Operational</span>
-    <span class="text-[var(--accent-purple)] blink">/// End of line</span>
+  <div class="closing">
+    <p>{personal.name} · {personal.location}</p>
+    <a href="#inicio">Volver al inicio</a>
   </div>
 </footer>
