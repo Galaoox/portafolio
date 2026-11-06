@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/animations.css';
 
 interface Props {
   title?: string;
@@ -21,6 +20,8 @@ const canonicalUrl = Astro.url.href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#171a1b" />
 
     <link rel="canonical" href={canonicalUrl} />
 
@@ -56,23 +57,11 @@ const canonicalUrl = Astro.url.href;
       gtag('config', 'G-QWE1S2BG2R');
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;600;700&family=Space+Mono:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/manrope-regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/barlow-condensed-semibold.ttf" as="font" type="font/ttf" crossorigin />
   </head>
-  <body class="min-h-screen relative overflow-x-hidden antialiased selection:bg-[var(--accent-purple)] selection:text-white">
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-3 focus:rounded-lg focus:bg-[var(--accent-purple)] focus:px-4 focus:py-3 focus:text-white"
-    >
-      Saltar al contenido principal
-    </a>
-
-    <div class="relative z-10">
-      <slot />
-    </div>
+  <body>
+    <a class="skip" href="#contenido">Saltar al contenido</a>
+    <slot />
   </body>
 </html>

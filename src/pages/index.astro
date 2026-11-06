@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SystemTopBar from '../components/SystemTopBar.astro';
 import HeroNeo from '../components/HeroNeo.astro';
 import TechStackNeo from '../components/TechStackNeo.astro';
 import ExperienceNeo from '../components/ExperienceNeo.astro';
@@ -9,19 +8,13 @@ import FooterNeo from '../components/FooterNeo.astro';
 ---
 
 <Layout title="Erick Vergara - Desarrollador Full Stack | Portafolio">
-	<div class="scanlines" aria-hidden="true"></div>
-	<SystemTopBar />
-
-	<main id="main" class="container mx-auto px-4 pt-20 pb-20 max-w-7xl">
-		<HeroNeo />
-		<TechStackNeo />
+	<HeroNeo />
+	<main id="contenido" class="wrap" tabindex="-1">
 		<ExperienceNeo />
-		<EducationNeo />
-		<FooterNeo />
+		<div class="lower-grid">
+			<TechStackNeo />
+			<EducationNeo />
+		</div>
 	</main>
-
-	<div class="fixed top-0 left-0 w-8 h-8 border-l-2 border-t-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
-	<div class="fixed top-0 right-0 w-8 h-8 border-r-2 border-t-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
-	<div class="fixed bottom-0 left-0 w-8 h-8 border-l-2 border-b-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
-	<div class="fixed bottom-0 right-0 w-8 h-8 border-r-2 border-b-2 border-[var(--accent-purple)] opacity-50 pointer-events-none z-50"></div>
+	<FooterNeo />
 </Layout>
